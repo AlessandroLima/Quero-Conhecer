@@ -20,12 +20,6 @@ struct Place {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
-//    public init(name:String,latitude:CLLocationDegrees,longitude:CLLocationDegrees,address:String){
-//        self.name = name
-//        self.latitude = latitude
-//        self.longitude = longitude
-//        self.address = address
-//    }
     
     static func getFormattedAddress(whith placeMark:CLPlacemark) -> String{
         var address = ""
@@ -50,7 +44,6 @@ struct Place {
         if let country = placeMark.country{
             address += " \(country)"
         }
-        
         
         return address
     }

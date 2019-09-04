@@ -31,7 +31,9 @@ class PlaceFinderViewController: UIViewController {
     //MARK:View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(getLocation(_:)))
+        gesture.minimumPressDuration = 0.5
+        mapView.addGestureRecognizer(gesture)
     }
     
     @IBAction func findPlace(_ sender: UIButton) {
@@ -43,7 +45,7 @@ class PlaceFinderViewController: UIViewController {
                 self.load(show: false)
                 if error == nil{
                     if !self.savePlace(placeMark: placeMarks?.first){
-                       self.setMessage(type: .error("Erro desconhecido."))
+                        self.setMessage(type: .error("Erro desconhecido."))
                     }
                 }else{
                     self.setMessage(type: .error("Não encontramos nenhum local com esse nome."))
@@ -76,7 +78,6 @@ extension PlaceFinderViewController{
         }
         let name = placeMark.name ?? placeMark.country ?? "Desconhecido"
         let address = Place.getFormattedAddress(whith: placeMark)
-        print(address)
         place = Place(name:name,latitude:coordinate.latitude,longitude:coordinate.longitude,address:address)
         showInMap(place: place)
         return true
@@ -106,5 +107,25 @@ extension PlaceFinderViewController{
         }
         Utils.showAlert(title: title, message: message, confirmation: hasConfirmation, vc: self)
     }
-   
+    
+    @objc func getLocation(_ gesture:UILongPressGestureRecognizer){
+        if gesture.state == .began{
+            load(show: true)
+            let point = gesture.location(in: mapView)
+            let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
+            let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            geoCoder.reverseGeocodeLocation(location) { (placeMarks, error) in
+                self.load(show: false)
+                if error == nil{
+                    if !self.savePlace(placeMark: placeMarks?.first){
+                        self.setMessage(type: .error("Erro desconhecido."))
+                    }
+                }else{
+                    self.setMessage(type: .error("Não encontramos nenhum local com esse nome."))
+                }
+            }
+        }
+    }
+    
+    
 }
