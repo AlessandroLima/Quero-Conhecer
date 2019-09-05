@@ -142,6 +142,7 @@ extension PlaceFinderViewController{
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         if confirmation {
             let confirmAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
                 self.addPlace(self.place)
             }
             alert.addAction(confirmAction)
