@@ -1,3 +1,3 @@
 # Quero Conhecer
 
-Brincando com maps
+Brincando com mapas
