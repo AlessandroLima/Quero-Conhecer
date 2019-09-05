@@ -11,7 +11,7 @@ import MapKit
 
 
 class MapViewViewController: UIViewController {
-
+    
     //MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var MapView: MKMapView!
@@ -27,12 +27,12 @@ class MapViewViewController: UIViewController {
     //MARK: View Function
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
     @IBAction func ShowRote(_ sender: UIButton) {
-    
+        
     }
     @IBAction func showSearchBar(_ sender: UIBarButtonItem) {
         constraint = ctSearchBar
@@ -45,20 +45,20 @@ class MapViewViewController: UIViewController {
                 self.ctSearchBar.constant = CGFloat(0)
             }
             self.view.layoutIfNeeded()
-        
+            
         }
         
         
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
