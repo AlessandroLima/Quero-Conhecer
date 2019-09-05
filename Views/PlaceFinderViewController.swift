@@ -87,6 +87,7 @@ extension PlaceFinderViewController{
         let name = placeMark.name ?? placeMark.country ?? "Desconhecido"
         let address = Place.getFormattedAddress(whith: placeMark)
         place = Place(name:name,latitude:coordinate.latitude,longitude:coordinate.longitude,address:address)
+        
         showInMap(place: place)
         return true
     }
@@ -141,7 +142,7 @@ extension PlaceFinderViewController{
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         if confirmation {
             let confirmAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                print("OK")
+                self.addPlace(self.place)
             }
             alert.addAction(confirmAction)
         }

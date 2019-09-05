@@ -21,17 +21,10 @@ class PlacesTableViewController: UITableViewController {
         
     }
     
-    //MARK: Functions
-    
-    func loadPlaces(){
-        if let placesData = ud.data(forKey: "places"){
-            do{
-                places = try JSONDecoder().decode([Place].self, from: placesData)
-                tableView.reloadData()
-            }catch{
-                print(error.localizedDescription)
-            }
-            
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "placeFinderSegue"{
+            let vc = segue.destination as! PlaceFinderViewController
+            vc.delegate = self
         }
     }
     
@@ -102,9 +95,37 @@ class PlacesTableViewController: UITableViewController {
 
 extension PlacesTableViewController: PlaceFinderDelegate{
     
-    func addPlace(_ place: Place) {
-        
+    
+    
+    //MARK: Functions
+    
+    func loadPlaces(){
+        if let placesData = ud.data(forKey: "places"){
+            do{
+                places = try JSONDecoder().decode([Place].self, from: placesData)
+                tableView.reloadData()
+                
+            }catch{
+                print(error.localizedDescription)
+            }
+            
+        }
     }
     
+    func savePlaces(){
+        do{
+            let json = try JSONEncoder().encode(places)
+            ud.set(json, forKey: "places")
+        }catch{
+            print(error.localizedDescription)
+        }
+    }
     
+    func addPlace(_ place: Place) {
+        if !places.contains(place){
+            places.append(place)
+            self.savePlaces()
+            tableView.reloadData()
+        }
+    }
 }
