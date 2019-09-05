@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 struct Utils{
     static func showAlert(title: String, message: String, confirmation:Bool, vc: UIViewController){

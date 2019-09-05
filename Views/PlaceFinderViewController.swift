@@ -9,7 +9,13 @@
 import UIKit
 import MapKit
 
-class PlaceFinderViewController: UIViewController {
+protocol PlaceFinderDelegate: class{
+    func addPlace(_ place:Place)
+}
+
+class PlaceFinderViewController: UIViewController, PlaceFinderDelegate {
+    
+    
     
     enum placeFinderMessageType {
         case error(String)
@@ -26,6 +32,8 @@ class PlaceFinderViewController: UIViewController {
     
     let geoCoder = CLGeocoder()
     var place: Place!
+    let ud = UserDefaults.standard
+    weak var delegate:PlaceFinderDelegate?
     
     
     //MARK:View Functions
@@ -105,7 +113,7 @@ extension PlaceFinderViewController{
             message = errorMessage
             hasConfirmation = false
         }
-        Utils.showAlert(title: title, message: message, confirmation: hasConfirmation, vc: self)
+        showAlert(title: title, message: message, confirmation: hasConfirmation, vc: self)
     }
     
     @objc func getLocation(_ gesture:UILongPressGestureRecognizer){
@@ -127,5 +135,21 @@ extension PlaceFinderViewController{
         }
     }
     
+    func showAlert(title: String, message: String, confirmation:Bool, vc: UIViewController){
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        if confirmation {
+            let confirmAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                print("OK")
+            }
+            alert.addAction(confirmAction)
+        }
+        alert.addAction(cancelAction)
+        vc.present(alert, animated: true)
+    }
     
+    func addPlace(_ place: Place) {
+        delegate?.addPlace(place)
+    }
 }

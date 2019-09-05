@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-struct Place {
+struct Place: Codable {
     
     let name:String
     let latitude:CLLocationDegrees
