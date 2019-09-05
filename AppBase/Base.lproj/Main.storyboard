@@ -70,7 +70,11 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="s6u-BF-Rgo"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gpe-kZ-raJ">
                             <connections>
+<<<<<<< HEAD
                                 <segue destination="d3u-NV-aId" kind="presentation" identifier="segue2" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="hbI-QX-2YD"/>
+=======
+                                <segue destination="d3u-NV-aId" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="hbI-QX-2YD"/>
+>>>>>>> 1b94f12d4a4a05f2d98d298b49efef3efababa58
                             </connections>
                         </barButtonItem>
                     </navigationItem>

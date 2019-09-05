@@ -9,7 +9,11 @@
 import Foundation
 import MapKit
 
+<<<<<<< HEAD
 struct Place: Codable {
+=======
+struct Place {
+>>>>>>> 1b94f12d4a4a05f2d98d298b49efef3efababa58
     
     let name:String
     let latitude:CLLocationDegrees
@@ -20,6 +24,15 @@ struct Place: Codable {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
+<<<<<<< HEAD
+=======
+//    public init(name:String,latitude:CLLocationDegrees,longitude:CLLocationDegrees,address:String){
+//        self.name = name
+//        self.latitude = latitude
+//        self.longitude = longitude
+//        self.address = address
+//    }
+>>>>>>> 1b94f12d4a4a05f2d98d298b49efef3efababa58
     
     static func getFormattedAddress(whith placeMark:CLPlacemark) -> String{
         var address = ""
@@ -45,6 +58,10 @@ struct Place: Codable {
             address += " \(country)"
         }
         
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 1b94f12d4a4a05f2d98d298b49efef3efababa58
         return address
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+<<<<<<< HEAD
 protocol PlaceFinderDelegate: class{
     func addPlace(_ place:Place)
 }
@@ -16,6 +17,9 @@ protocol PlaceFinderDelegate: class{
 class PlaceFinderViewController: UIViewController, PlaceFinderDelegate {
     
     
+=======
+class PlaceFinderViewController: UIViewController {
+>>>>>>> 1b94f12d4a4a05f2d98d298b49efef3efababa58
     
     enum placeFinderMessageType {
         case error(String)
@@ -32,16 +36,23 @@ class PlaceFinderViewController: UIViewController, PlaceFinderDelegate {
     
     let geoCoder = CLGeocoder()
     var place: Place!
+<<<<<<< HEAD
     let ud = UserDefaults.standard
     weak var delegate:PlaceFinderDelegate?
+=======
+>>>>>>> 1b94f12d4a4a05f2d98d298b49efef3efababa58
     
     
     //MARK:View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(getLocation(_:)))
         gesture.minimumPressDuration = 0.5
         mapView.addGestureRecognizer(gesture)
+=======
+        
+>>>>>>> 1b94f12d4a4a05f2d98d298b49efef3efababa58
     }
     
     @IBAction func findPlace(_ sender: UIButton) {
@@ -53,7 +64,11 @@ class PlaceFinderViewController: UIViewController, PlaceFinderDelegate {
                 self.load(show: false)
                 if error == nil{
                     if !self.savePlace(placeMark: placeMarks?.first){
+<<<<<<< HEAD
                         self.setMessage(type: .error("Erro desconhecido."))
+=======
+                       self.setMessage(type: .error("Erro desconhecido."))
+>>>>>>> 1b94f12d4a4a05f2d98d298b49efef3efababa58
                     }
                 }else{
                     self.setMessage(type: .error("Não encontramos nenhum local com esse nome."))
@@ -86,6 +101,10 @@ extension PlaceFinderViewController{
         }
         let name = placeMark.name ?? placeMark.country ?? "Desconhecido"
         let address = Place.getFormattedAddress(whith: placeMark)
+<<<<<<< HEAD
+=======
+        print(address)
+>>>>>>> 1b94f12d4a4a05f2d98d298b49efef3efababa58
         place = Place(name:name,latitude:coordinate.latitude,longitude:coordinate.longitude,address:address)
         showInMap(place: place)
         return true
@@ -113,6 +132,7 @@ extension PlaceFinderViewController{
             message = errorMessage
             hasConfirmation = false
         }
+<<<<<<< HEAD
         showAlert(title: title, message: message, confirmation: hasConfirmation, vc: self)
     }
     
@@ -152,4 +172,9 @@ extension PlaceFinderViewController{
     func addPlace(_ place: Place) {
         delegate?.addPlace(place)
     }
+=======
+        Utils.showAlert(title: title, message: message, confirmation: hasConfirmation, vc: self)
+    }
+   
+>>>>>>> 1b94f12d4a4a05f2d98d298b49efef3efababa58
 }
